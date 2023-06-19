@@ -3,6 +3,7 @@ import fog from "../assets/fog.svg"
 import avatar from "../assets/avatar.svg"
 import slack from "../assets/slack.svg"
 import googlemeet from "../assets/googlemeet.svg"
+import CloseIcon from '@mui/icons-material/Close';
 
 function AccountPage() {
     const [isOpen, setIsOpen] = useState(false)
@@ -31,7 +32,7 @@ function AccountPage() {
                     <img src={avatar} alt="" />
                 </div>
             </nav>
-            <div className='flex items-center justify-center'>
+            <div className='flex items-center justify-center relative'>
                 <div className='h-screen max-w-7xl my-2'>
                     <div className='py-2 px-2'>
                         <div className='flex items-center justify-between px-2 py-2'>
@@ -91,8 +92,53 @@ function AccountPage() {
                         </p>
                     </div>
                 </div>
-            </div>
 
+                {/* Popup starts*/}
+                <div className={`${isOpen ? 'visible' : 'invisible'} flex items-center justify-center px-4 py-4 w-fit-content absolute h-screen w-full bg-gray-100 bg-opacity-80`}>
+                    <div className="bg-white px-8 pt-6 pb-8 mb-4 rounded-lg shadow-md">
+                        <div className='flex items-center justify-between'>
+                            <h2 className='font-semibold px-2 py-2'>Invite</h2>
+                            <CloseIcon onClick={closeModal} className='cursor-pointer' />
+                        </div>
+                        <hr className='mb-4' />
+                        <div className="flex items-center justify-between gap-x-8 mb-2">
+                            <input
+                                className="appearance-none border rounded-sm py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full"
+                                type="text"
+                                placeholder="Email"
+                            />
+                            <button
+                                className="bg-purple-300 hover:bg-purple-400 font-semibold text-white py-2 px-8 border hover:border-transparent rounded"
+                                type="button"
+                            >
+                                Invite
+                            </button>
+                        </div>
+                        <div>
+                            <p className='text-sm text-gray-400 py-2 mb-2'>Add members from your organization</p>
+                            <div className='flex flex-col gap-y-2'>
+                                <div className='flex items-center gap-x-2 relative'>
+                                    <div className='bg-purple-200 h-8 w-8 rounded-full flex items-center justify-center text-white font-bold'>S</div>
+                                    <p>Smith <span className='text-gray-400'>(you)</span></p>
+                                    <span className='absolute right-0 text-gray-400 text-sm'>Owner</span>
+                                </div>
+                                <div className='flex items-center gap-x-2 relative'>
+                                    <div className='bg-purple-200 h-8 w-8 rounded-full flex items-center justify-center text-white font-bold'>J</div>
+                                    <p>John</p>
+                                    <span className='absolute right-0 text-gray-400 text-sm'>team</span>
+                                </div>
+                                <div className='flex items-center gap-x-2 relative'>
+                                    <div className='bg-purple-200 h-8 w-8 rounded-full flex items-center justify-center text-white font-bold'>R</div>
+                                    <p>Rick</p>
+                                    <span className='absolute right-0 text-gray-400 text-sm'>team</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* Popup ends */}
+
+            </div >
         </>
     )
 }
